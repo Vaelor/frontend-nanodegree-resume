@@ -1,0 +1,59 @@
+/*
+
+schools: array of objects with
+name: string
+location: string
+degree: string
+majors: array of strings
+dates: integer (graduation date)
+url: string
+onlineCourses: array with
+title: string
+school: string
+date: integer (date finished)
+url: string
+display: function taking no parameters*/
+
+
+{
+  "schools": [
+    {
+      "name": "string",
+      "location": "string",
+      "degree": "string"
+    },
+    {
+      "name": "string",
+      "location": "string",
+      "degree": "string"
+    }
+  ],
+
+  "majors": [
+    {
+      "dates": "integer (grad date)",
+      "url": "string"
+    },
+    {
+      "dates": "integer (grad date)",
+      "url": "string"
+    }
+  ],
+
+  "onlineCourses": [
+    {
+      "title": "string",
+      "school": "string",
+      "date": "datefinished integer",
+      "url": "string"
+    },
+    {
+      "title": "string",
+      "school": "string",
+      "date": "datefinished integer",
+      "url": "string"
+    }
+  ],
+
+  "display": "displayfunc"
+}
