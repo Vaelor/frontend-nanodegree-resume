@@ -13,8 +13,8 @@ These are HTML strings. As part of the course, you'll be using JavaScript functi
 replace the %data% placeholder text you see in them.
 */
 var HTMLResumeElements = {
-	HTMLheaderNam: '<h1 id="name">%data%</h1>',
-	HTMLheaderRol: '<span>%data%</span><hr>',
+	HTMLheaderName: '<h1 id="name">%data%</h1>',
+	HTMLheaderRole: '<span>%data%</span><hr>',
 	HTMLcontactGeneric: '<li class="flex-item"><span class="orange-text">%contact%</span><span class="white-text">%data%</span></li>',
 	HTMLmobile: '<li class="flex-item"><span class="orange-text">mobile</span><span class="white-text">%data%</span></li>',
 	HTMLemail: '<li class="flex-item"><span class="orange-text">email</span><span class="white-text">%data%</span></li>',
@@ -27,8 +27,7 @@ var HTMLResumeElements = {
 	HTMLskillsStart: '<h3 id="skills-h3">Skills at a Glance:</h3><ul id="skills" class="flex-box"></ul>',
 	HTMLskills: '<li class="flex-item"><span class="white-text">%data%</span></li>',
 	HTMLworkStart: '<div class="work-entry"></div>',
-	HTMLworkEmployer: '<a href="#">%data%',
-	HTMLworkTitle: ' - %data%</a>',
+	HTMLworkEmployerAndTitle: '<a href="#">%data%  - %data%</a>',
 	HTMLworkDates: '<div class="date-text">%data%</div>',
 	HTMLworkLocation: '<div class="location-text">%data%</div>',
 	HTMLworkDescription: '<p><br>%data%</p>',
