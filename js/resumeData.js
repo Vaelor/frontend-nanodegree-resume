@@ -43,7 +43,7 @@ var education = {
     }
 ],
 
-    'display': 'displayfunc'
+    'display': function() { showEducation(); }
 };
 
 
@@ -60,7 +60,7 @@ var bio = {
     'welcomeMessage': 'Yes, it\'s bigger on the inside then the outside!',
     'skills': 'Professional with a sonic Screwdriver',
     'biopic': 'http://i.telegraph.co.uk/multimedia/archive/03010/doctor_who_capaldi_3010171b.jpg',
-    'display': 'showBio'
+    'display': function() { showBio(); }
 };
 
 var projects = {
@@ -86,7 +86,7 @@ var projects = {
             ]
         }
     ],
-    'display': 'showProjects'
+    'display': function() { showProjects(); }
 };
 
 var work = {
