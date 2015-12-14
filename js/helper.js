@@ -1,21 +1,17 @@
 /*
+I merged the elements into one object, because in my opinion it seems logical to me to group these
+elements, adding readability.
+Also no Namespace cluttering (not that I would use HTMLheaderName as a variable name
+very often, but why add so many global variables to it)
 
-This file contains all of the code running in the background that makes resumeBuilder.js possible. We call these helper functions because they support your code in this course.
-
-Don't worry, you'll learn what's going on in this file throughout the course. You won't need to make any changes to it until you start experimenting with inserting a Google Map in Problem Set 3.
-
-Cameron Pittman
+I also merged some elements, for example the HTMLworkEmployer and HTMLworkTitle.
+This way I always have complete elements. which also enables me to use my appendReplaceElement function.
 */
-
-
-/*
-These are HTML strings. As part of the course, you'll be using JavaScript functions
-replace the %data% placeholder text you see in them.
-*/
-var HTMLResumeElements = {
+var HTMLresumeElements = {
 	contactElements: {
 		HTMLheaderName: '<h1 id="name">%data%</h1>',
 		HTMLheaderRole: '<span>%data%</span><hr>',
+		HTMLcontactsCategorie: '<ul id="topContacts" class="flex-box"></ul>',
 		HTMLcontactGeneric: '<li class="flex-item"><span class="orange-text">%contact%</span><span class="white-text">%data%</span></li>',
 		HTMLmobile: '<li class="flex-item"><span class="orange-text">mobile</span><span class="white-text">%data%</span></li>',
 		HTMLemail: '<li class="flex-item"><span class="orange-text">email</span><span class="white-text">%data%</span></li>',
@@ -47,55 +43,22 @@ var HTMLResumeElements = {
 
 	schoolElement: {
 		HTMLschoolStart: '<div class="education-entry"></div>',
-		HTMLschoolName: '<a href="#">%data%',
-		HTMLschoolDegree: ' -- %data%</a>',
+		HTMLschoolNameAndDegree: '<a href="#">%data% -- %data%</a>',
 		HTMLschoolDates: '<div class="date-text">%data%</div>',
 		HTMLschoolLocation: '<div class="location-text">%data%</div>',
 		HTMLschoolMajor: '<em><br>Major: %data%</em>'
 	},
 
 	onlineElement: {
+		HTMLonlineStart: '<div class="education-entry"></div>',
 		HTMLonlineClasses: '<h3>Online Classes</h3>',
-		HTMLonlineTitle: '<a href="#">%data%',
-		HTMLonlineSchool: ' - %data%</a>',
+		HTMLonlineTitleAndSchool: '<a href="#">%data% - %data%</a>',
 		HTMLonlineDates: '<div class="date-text">%data%</div>',
 		HTMLonlineURL: '<br><a href="#">%data%</a>'
 	},
 
-	internationalizeButton: '<button>Internationalize</button>',
 	googleMap: '<div id="map"></div>'
 };
-
-
-/*
-The International Name challenge in Lesson 2 where you'll create a function that will need this helper code to run. Don't delete! It hooks up your code to the button you'll be appending.
-*/
-$(document).ready(function() {
-	$('button').click(function() {
-		var iName = inName() || function(){};
-		$('#name').html(iName);
-	});
-});
-
-/*
-The next few lines about clicks are for the Collecting Click Locations quiz in Lesson 2.
-*/
-clickLocations = [];
-
-function logClicks(x,y) {
-	clickLocations.push(
-		{
-			x: x,
-			y: y
-		}
-	);
-	console.log('x location: ' + x + '; y location: ' + y);
-}
-
-$(document).click(function(loc) {
-	logClicks(loc.pageX, loc.pageY);
-});
-
 
 
 /*
@@ -112,6 +75,8 @@ Start here! initializeMap() is called when page is loaded.
 function initializeMap() {
 
 	var locations;
+
+	var infoWindow;
 
 	var mapOptions = {
 		disableDefaultUI: true
@@ -138,13 +103,17 @@ function initializeMap() {
 		// iterates through school locations and appends each location to
 		// the locations array
 		for (var school in education.schools) {
-			locations.push(education.schools[school].location);
+			if (education.schools.hasOwnProperty(school)) {
+				locations.push(education.schools[school].location);
+			}
 		}
 
 		// iterates through work locations and appends each location to
 		// the locations array
 		for (var job in work.jobs) {
-			locations.push(work.jobs[job].location);
+			if (work.jobs.hasOwnProperty(job)) {
+				locations.push(work.jobs[job].location);
+			}
 		}
 
 		return locations;
@@ -170,16 +139,20 @@ function initializeMap() {
 		  title: name
 		});
 
+		/* If an infoWindow already exists, close it first */
+		if (!_.isUndefined(infoWindow)) {
+			infoWindow.close();
+		}
 		// infoWindows are the little helper windows that open when you click
 		// or hover over a pin on a map. They usually contain more information
 		// about a location.
-		var infoWindow = new google.maps.InfoWindow({
+		infoWindow = new google.maps.InfoWindow({
 		  content: name
 		});
 
 		// hmmmm, I wonder what this is about...
 		google.maps.event.addListener(marker, 'click', function() {
-		  // your code goes here!
+			infoWindow.open(map, marker);
 		});
 
 		// this is where the pin actually gets added to the map.
@@ -213,15 +186,16 @@ function initializeMap() {
 
 		// Iterates through the array of locations, creates a search object for each location
 		for (var place in locations) {
+			if (locations.hasOwnProperty(place)) {
+				// the search request object
+				var request = {
+					query: locations[place]
+				};
 
-			// the search request object
-			var request = {
-				query: locations[place]
-			};
-
-			// Actually searches the Google Maps API for location data and runs the callback
-			// function with the search results after each search.
-			service.textSearch(request, callback);
+				// Actually searches the Google Maps API for location data and runs the callback
+				// function with the search results after each search.
+				service.textSearch(request, callback);
+			}
 		}
 	}
 
@@ -242,11 +216,11 @@ Uncomment the code below when you're ready to implement a Google Map!
 */
 
 // Calls the initializeMap() function when the page loads
-//window.addEventListener('load', initializeMap);
+window.addEventListener('load', initializeMap);
 
 // Vanilla JS way to listen for resizing of the window
 // and adjust map bounds
-//window.addEventListener('resize', function(e) {
+window.addEventListener('resize', function(e) {
   //Make sure the map bounds get updated on page resize
-//  map.fitBounds(mapBounds);
-//});
+  map.fitBounds(mapBounds);
+});

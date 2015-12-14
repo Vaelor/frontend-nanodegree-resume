@@ -6,9 +6,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Resume</title>
 
+		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/style.css" rel="stylesheet">
 		<script src="js/jQuery.js"></script>
-		<script src="js/lodash.js"></script>
+		<script src="js/lodash.min.js"></script>
 		<script src="js/helper.js"></script>
 
 
@@ -17,35 +18,49 @@
 		<meta name="viewport" content="width=device-width">
 	</head>
 	<body>
-		<div id="main">
+			<div id="main">
 
-			<div id="header" class="center-content clear-fix">
-				<ul id="topContacts" class="flex-box"></ul>
+			<div id="header" class="center-content clear-fix"></div>
+				<div class="navbar navbar-default">
+					<div class="navbar-header"><a class="navbar-brand" href="#"></a>
+						<a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</a>
+					</div>
+					<div class="navbar-collapse collapse">
+						<ul class="nav navbar-nav">
+							<li class="active"><a id="tabWork" href="#">Work</a></li>
+							<li><a id="tabProjects" href="#">Projects</a></li>
+							<li><a id="tabEducation" href="#">Education</a></li>
+							<li><a id="tabMap" href="#">Map</a></li>
+						</ul>
+					</div>
+				</div>
+				<div style="clear: both;"></div>
+				<div id="workExperience" class="gray">
+					<h2>Work Experience</h2>
+				</div>
+				<div id="projects">
+					<h2>Projects</h2>
+				</div>
+				<div id="education" class="gray">
+					<h2>Education</h2>
+				</div>
+				<div id="mapDiv">
+					<h2>Where I've Lived and Worked</h2>
+				</div>
+				<div id="lets-connect" class="dark-gray">
+					<h2 class="orange center-text">Let's Connect</h2>
+						<ul id="footerContacts" class="flex-box">
+					</ul>
+				</div>
 			</div>
-
-			<div style="clear: both;"></div>
-			<div id="workExperience" class="gray">
-				<h2>Work Experience</h2>
-			</div>
-			<div id="projects">
-				<h2>Projects</h2>
-			</div>
-			<div id="education" class="gray">
-				<h2>Education</h2>
-			</div>
-			<div id="mapDiv">
-				<h2>Where I've Lived and Worked</h2>
-			</div>
-			<div id="lets-connect" class="dark-gray">
-				<h2 class="orange center-text">Let's Connect</h2>
-					<ul id="footerContacts" class="flex-box">
-				</ul>
-			</div>
-		</div>
-
 		<!-- Scripts -->
 		<script src="js/resumeData.js"></script>
 		<script src="js/resumeBuilder.js"></script>
+		<script src="js/bootstrap.min.js"></script>
     <!--<script src="js/dontshow.js"></script>-->
 	</body>
 </html>
