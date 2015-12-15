@@ -10,7 +10,7 @@ This way I always have complete elements. which also enables me to use my append
 var HTMLresumeElements = {
 	contactElements: {
 		HTMLheaderName: '<h1 id="name">%data%</h1>',
-		HTMLheaderRole: '<span>%data%</span><hr>',
+		HTMLheaderRole: '<span class="lightgrey-text">%data%</span><hr>',
 		HTMLcontactsCategorie: '<ul id="topContacts" class="flex-box"></ul>',
 		HTMLcontactGeneric: '<li class="flex-item"><span class="orange-text">%contact%</span><span class="white-text">%data%</span></li>',
 		HTMLmobile: '<li class="flex-item"><span class="orange-text">mobile</span><span class="white-text">%data%</span></li>',
@@ -61,17 +61,9 @@ var HTMLresumeElements = {
 };
 
 
-/*
-This is the fun part. Here's where we generate the custom Google Map for the website.
-See the documentation below for more details.
-https://developers.google.com/maps/documentation/javascript/reference
-*/
-var map;    // declares a global map variable
 
+var map;
 
-/*
-Start here! initializeMap() is called when page is loaded.
-*/
 function initializeMap() {
 
 	var locations;
@@ -211,16 +203,8 @@ function initializeMap() {
 
 }
 
-/*
-Uncomment the code below when you're ready to implement a Google Map!
-*/
-
-// Calls the initializeMap() function when the page loads
 window.addEventListener('load', initializeMap);
 
-// Vanilla JS way to listen for resizing of the window
-// and adjust map bounds
-window.addEventListener('resize', function(e) {
-  //Make sure the map bounds get updated on page resize
+window.addEventListener('resize', function() {
   map.fitBounds(mapBounds);
 });
